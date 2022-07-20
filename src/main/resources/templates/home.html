@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>COVID Tracker Application</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div class="box has-text-centered has-background-light">
+			<h1 class="title">COVID-19 cases in Brazil</h1>
+		</div>
+
+		<div class="boxContainer has-text-centered">
+			<div class="box has-background-info has-text-success-light">
+				<h2 class="has-text-weight-semibold">Total reported cases:</h2>
+				<p th:text="${totalReportedCases}">0</p>
+			</div>
+			<div class="box has-background-info has-text-success-light">
+				<h2 class="has-text-weight-semibold">Cases referring to:</h2>
+				<p th:text="${lastDate}"></p>
+			</div>
+		</div>
+		
+		<div class="block has-text-centered">
+			<p th:text=${deltaMessage}></p>
+		</div>
+
+		<div class="tableContainer">
+			<table class="table is-striped is-bordered is-hoverable has-text-centered">
+				<tr>
+					<th>State</th>
+					<th>Last Cases</th>
+				</tr>
+				<tr th:each="locationStat, iStat : ${locationStats}">
+					<td th:if="${iStat.index <= 13}" th:text="${locationStat.state}"></td>
+					<td th:if="${iStat.index <= 13}"
+						th:text="${locationStat.latestTotalCases}"></td>
+				</tr>
+			</table>
+
+			<table class="table is-striped is-bordered is-hoverable has-text-centered">
+				<tr>
+					<th>State</th>
+					<th>Last Cases</th>
+				</tr>
+				<tr th:each="locationStat, iStat : ${locationStats}">
+					<td th:if="${iStat.index > 13}" th:text="${locationStat.state}"></td>
+					<td th:if="${iStat.index > 13}"
+						th:text="${locationStat.latestTotalCases}"></td>
+				</tr>
+			</table>
+
+		</div>
+
+		<footer class="footer has-text-centered">
+			<h2 class="has-text-weight-semibold is-underlined">About the data</h2>
+
+			<p>Values extracted from the Johns Hopkins Center for Science and
+				Engineering GitHub Repository</p>
+			<p>
+				Their repository can be found <a
+					href="https://github.com/CSSEGISandData/COVID-19"> in here</a>
+			</p>
+			<p>
+				Created based on <a
+					href="https://www.youtube.com/watch?v=8hjNG9GZGnQ">this</a> 
+				JavaBrains video tutorial
+			</p>
+		</footer>
+
+
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+.boxContainer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	gap: 10%;
+}
+
+.tableContainer {
+	width: 75%;
+	margin: 0 auto;
+	justify-content: space-around;
+	align-items: flex-start;
+	display: flex;
+}
+
+.table {
+	display: inline-block;
+}
+
+.box {
+	height: 100px;
+}
